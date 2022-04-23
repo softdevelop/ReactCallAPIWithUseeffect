@@ -1,0 +1,40 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "item": "bread"
+    },
+    {
+      "id": 2,
+      "item": "water"
+    },
+    {
+      "id": 3,
+      "item": "apple"
+    },
+    {
+      "id": 4,
+      "item": "orange"
+    },
+    {
+      "id": 5,
+      "item": "grapes"
+    },
+    {
+      "item": "rice",
+      "id": 6
+    },
+    {
+      "item": "banana",
+      "id": 7
+    },
+    {
+      "item": "Coca",
+      "id": 8
+    },
+    {
+      "item": "pesi",
+      "id": 9
+    }
+  ]
+}
