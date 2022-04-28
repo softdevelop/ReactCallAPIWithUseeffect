@@ -1,48 +1,12 @@
 {
   "list": [
     {
-      "item": "bread",
-      "id": 1
+      "item": "qrysdd",
+      "id": 3
     },
     {
-      "item": "water",
-      "id": 2
-    },
-    {
-      "id": 3,
-      "item": "apple"
-    },
-    {
-      "id": 4,
-      "item": "orange"
-    },
-    {
-      "id": 5,
-      "item": "grapes"
-    },
-    {
-      "item": "rice",
-      "id": 6
-    },
-    {
-      "item": "banana",
-      "id": 7
-    },
-    {
-      "item": "pesi",
-      "id": 9
-    },
-    {
-      "item": "strawberry",
-      "id": 10
-    },
-    {
-      "item": "grape",
-      "id": 11
-    },
-    {
-      "item": "coca",
-      "id": 12
+      "item": "bcd",
+      "id": 4
     }
   ]
 }

@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getList, setItem, updateItem, deleteItem } from '../services/list';
-import FilterData from '../components/Groceries/FilterData';
-import Groceries from '../components/Groceries/Groceries';
-import AddData from '../components/Groceries/AddData';
 
 const Grocery = () => {
   const [alert, setAlert] = useState(false);
@@ -37,7 +34,7 @@ const Grocery = () => {
     }
   }, [alert])
 
-  const submitData = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setItem(itemInput)
       .then(() => {
@@ -59,7 +56,6 @@ const Grocery = () => {
   };
   
   const handleChangeItem = (e) => {
-    e.preventDefault();
   	setItemUpdate(e.target.value);
   	let newList = [...list];
   	newList.some(it => {
@@ -71,7 +67,7 @@ const Grocery = () => {
   	setList(newList);
   }
   
-  const handleDelItem = (idInput) => {
+  const delItem = (idInput) => {
     deleteItem(idInput)
       .then(() => {
         if(mounted.current) {
@@ -86,22 +82,38 @@ const Grocery = () => {
     //let fd = list.filter(dt => dt.item.includes(itemFilter));
     //setItemFilter('');
   }
-  
-  const changeFilterValue = (v) => {
-    setItemFilter(v);
-  }
 
   return(
 	<div className="wrapper">
 		<h1 className="text-center">My Grocery List</h1>
 		<div className="pt-0 shadow rounded-3 overflow-hidden d-flex list-group" id="dropdownFilter">
 			<div className="d-grid gap-1">
-				<FilterData handleSubmit={filterData} handleChange={changeFilterValue} />
-				<Groceries list={list} itemFilter={itemFilter} delItem={handleDelItem} handleUpdateItem={handleUpdateItem} handleStartUdate={su => setStartUdate(!su)} startUdate={startUdate} handleChangeItem={handleChangeItem}/>
+				
+				<ul className="list-unstyled mb-0">
+				  { 
+				  	list
+						.filter(dt => dt.item.includes(itemFilter))
+				  		.map(item => 
+				  			<li className="list-group-item dropdown-item d-flex justify-content-between" key={item.item}>
+				  				{ startUdate? 
+				  					<form onSubmit={handleUpdateItem} alt={item.id}>
+				  						<input type="text" className="form-control" value={item.item} alt={item.id}  onChange={handleChangeItem}/>
+				  					</form> :
+				  					item.item
+				  				}
+				  				<button type="button" className="btn btn-warning" onClick={() => setStartUdate(!startUdate)}>Update</button>
+				  				<button type="button" className="btn-outline-danger btn-close" onClick={() => delItem(item.id)}></button>
+				  			</li>
+				  		)
+				  }
+				</ul>
 				{alert && <h2> Submit Successful</h2>}
 				<hr className="featurette-divider"/>
-				<AddData handleSubmit={submitData} handleChange={v=>setItemInput(v)} itemInput={itemInput}/>
-				
+				<form onSubmit={handleSubmit} className="input-group mb-3 p-2 mb-2 bg-light border-bottom">
+					<span className="input-group-text">New Item</span>
+					<input className="form-control" type="text" onChange={event => setItemInput(event.target.value)} value={itemInput} />
+					<button className="btn btn-outline-secondary" type="submit">Submit</button>
+				</form>
 			</div>
 		</div>
     </div>
